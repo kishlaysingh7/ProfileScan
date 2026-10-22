@@ -139,6 +139,10 @@ remain server-side.
 The Render configuration permits browser requests from `https://kishlaysingh7.github.io`. If you use a custom domain,
 update Render's `CORS_ORIGIN` to the custom site's origin before publishing.
 
+GitHub Pages serves static files and cannot resolve browser-history routes directly. On the deployed site, use the
+navigation links or hash URLs such as `https://kishlaysingh7.github.io/ProfileScan/#/dashboard`; do not use
+`https://kishlaysingh7.github.io/dashboard`, which belongs to a different GitHub Pages path and returns 404.
+
 Still to build before a public launch:
 - Email accounts + sessions, PostgreSQL for saved profiles, `DELETE /api/account/data`, `/api/profiles` endpoints (saved
   profiles currently live in the browser's localStorage).

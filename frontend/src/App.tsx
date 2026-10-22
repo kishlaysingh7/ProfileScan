@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { AppProvider } from "./context/AppContext";
 import CollectionPage from "./pages/CollectionPage";
@@ -14,9 +14,11 @@ import ServicesPage from "./pages/ServicesPage";
 import UploadPage from "./pages/UploadPage";
 
 export default function App() {
+  const Router = import.meta.env.BASE_URL === "/" ? BrowserRouter : HashRouter;
+
   return (
     <AppProvider>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<LandingPage />} />
@@ -34,7 +36,7 @@ export default function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </AppProvider>
   );
 }
