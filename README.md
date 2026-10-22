@@ -113,6 +113,30 @@ badge and are saved as confirmed.
 Done: input validation (zod), helmet, CORS allow-list, rate limiting, 10 kB body limit, HTTPS-only upstream calls with
 timeouts, unguessable job IDs with 30-minute expiry, audit log without personal data, graceful shutdown.
 
+## Deploying with Render and GitHub Pages
+
+GitHub Pages hosts the static React frontend only. The Node/Express API runs separately on Render so API credentials
+remain server-side.
+
+1. In Render, select **New** → **Blueprint** and connect this GitHub repository. Render reads `render.yaml` and
+   creates the `profilescan-api` service.
+2. In the Render service environment settings, enter the provider keys you intend to use:
+   `GOOGLE_VISION_API_KEY`, `SERPAPI_KEY`, `GITHUB_TOKEN`, and `BRAVE_SEARCH_API_KEY`. Do not add them to GitHub
+   Actions or commit them to the repository.
+3. After Render deploys, copy the service URL, for example `https://profilescan-api.onrender.com`.
+4. In GitHub, open **Settings** → **Secrets and variables** → **Actions** → **Variables** and create:
+
+   ```text
+   VITE_API_BASE_URL=https://profilescan-api.onrender.com
+   ```
+
+5. In GitHub, open **Settings** → **Pages** and set the source to **GitHub Actions**.
+6. Open **Actions** → **Deploy frontend to GitHub Pages** → **Run workflow**. The deployed site will be available at
+   `https://kishlaysingh7.github.io/ProfileScan/`.
+
+The Render configuration permits browser requests from `https://kishlaysingh7.github.io`. If you use a custom domain,
+update Render's `CORS_ORIGIN` to the custom site's origin before publishing.
+
 Still to build before a public launch:
 - Email accounts + sessions, PostgreSQL for saved profiles, `DELETE /api/account/data`, `/api/profiles` endpoints (saved
   profiles currently live in the browser's localStorage).

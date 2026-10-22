@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: profilescan-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://kishlaysingh7.github.io
+      - key: TRUST_PROXY
+        value: "1"
+      - key: MOCK_IMAGE_SEARCH
+        value: "false"
+      - key: SERPAPI_MONTHLY_LIMIT
+        value: "250"
+      - key: GOOGLE_VISION_API_KEY
+        sync: false
+      - key: SERPAPI_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: BRAVE_SEARCH_API_KEY
+        sync: false
