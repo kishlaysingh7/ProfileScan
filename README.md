@@ -119,7 +119,9 @@ GitHub Pages hosts the static React frontend only. The Node/Express API runs sep
 remain server-side.
 
 1. In Render, select **New** → **Blueprint** and connect this GitHub repository. Render reads `render.yaml` and
-   creates the `profilescan-api` service.
+   creates the `profilescan-api` service. If you create the service manually, set the build command to
+   `npm ci --include=dev && npm run build`; the TypeScript build needs development dependencies even though the
+   running service uses `NODE_ENV=production`.
 2. In the Render service environment settings, enter the provider keys you intend to use:
    `GOOGLE_VISION_API_KEY`, `SERPAPI_KEY`, `GITHUB_TOKEN`, and `BRAVE_SEARCH_API_KEY`. Do not add them to GitHub
    Actions or commit them to the repository.
