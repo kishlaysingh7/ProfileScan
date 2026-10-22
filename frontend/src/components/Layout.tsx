@@ -32,7 +32,7 @@ export function Layout() {
             </span>
             ProfileFinder
           </Link>
-          <nav aria-label="Main" className="hidden items-center gap-1 text-sm font-medium md:flex">
+          <nav aria-label="Main" className="hidden items-center gap-1 text-sm font-medium lg:flex">
             {nav.map((n) => (
               <NavLink
                 key={n.to}
@@ -45,7 +45,7 @@ export function Layout() {
           </nav>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 lg:hidden"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
@@ -55,7 +55,7 @@ export function Layout() {
           </button>
         </div>
         {menuOpen && (
-          <nav id="mobile-navigation" aria-label="Main" className="border-t border-slate-200 bg-white px-4 py-2 md:hidden">
+          <nav id="mobile-navigation" aria-label="Main" className="border-t border-slate-200 bg-white px-4 py-2 lg:hidden">
             <div className="mx-auto grid max-w-5xl gap-1">
               {nav.map((n) => (
                 <NavLink key={n.to} to={n.to} className={navLinkClass} onClick={() => setMenuOpen(false)}>
